@@ -890,7 +890,7 @@ button{font-family:inherit;cursor:pointer;}
         <span id="sVolTxt" class="pill">80%</span>
         <button class="sbtn" id="sTest">▶ 듣기</button>
       </div>
-      <div class="hint">이 HTML 파일과 같은 폴더에 success-main.mp3 를 두세요. 없으면 기본 종료음이 울립니다.</div>
+      <div class="hint">이 HTML 파일 옆 sound 폴더에 success-main.mp3 를 두세요. 없으면 기본 종료음이 울립니다.</div>
     </div>
     <div class="sheet-foot">
       <button class="sbtn" id="sCancel">닫기</button>
@@ -917,7 +917,7 @@ button{font-family:inherit;cursor:pointer;}
       </div>
       <div class="row" style="margin-top:10px;">
         <button class="sbtn" id="btSndToggle">종료음 켜짐</button>
-        <span class="hint" style="margin:0;">첫 화면 타이머와 같은 음원(success-main.mp3)을 씁니다.</span>
+        <span class="hint" style="margin:0;">첫 화면 타이머와 같은 음원(sound/success-main.mp3)을 씁니다.</span>
       </div>
     </div>
     <div class="sheet-foot">
@@ -1358,7 +1358,7 @@ button{font-family:inherit;cursor:pointer;}
                     <button type="button" class="mini-btn" style="background:#8E44AD;" onclick="previewAlarm(1)">🖥 1차 안내화면 테스트</button>
                     <button type="button" class="mini-btn" style="background:#8E44AD;" onclick="previewAlarm(2)">🖥 2차 안내화면 테스트</button>
                 </div>
-                <div class="form-hint">HTML 파일과 같은 폴더에 <b>alarm1.mp3 / alarm2.mp3</b> 가 있으면 그 소리를, 없으면 내장 차임음을 사용합니다. mp3 음원은 중간에 끊지 않고 끝까지 재생되며, 내장 차임음만 위의 최대 지속시간 후 자동으로 멈춥니다. (둘 다 🔕 정지 버튼으로 언제든 수동으로 끌 수 있습니다)</div>
+                <div class="form-hint">HTML 파일 옆 <b>sound</b> 폴더에 <b>alarm1.mp3 / alarm2.mp3</b> 가 있으면 그 소리를, 없으면 내장 차임음을 사용합니다. mp3 음원은 중간에 끊지 않고 끝까지 재생되며, 내장 차임음만 위의 최대 지속시간 후 자동으로 멈춥니다. (둘 다 🔕 정지 버튼으로 언제든 수동으로 끌 수 있습니다)</div>
             </div>
             <div class="exp-settings">
                 <label style="color:#C0392B; font-size:1.2rem;">✨ EXP(경험치) 지급 설정</label>
@@ -1532,7 +1532,7 @@ button{font-family:inherit;cursor:pointer;}
                 a.addEventListener('canplaythrough', () => { mp3Ready[i] = true;  updateSoundStatusText(); });
                 a.addEventListener('loadedmetadata',  () => { mp3Ready[i] = true;  updateSoundStatusText(); });
                 a.addEventListener('error',           () => { mp3Ready[i] = false; updateSoundStatusText(); });
-                a.src = `alarm${i}.mp3`;
+                a.src = `sound/alarm${i}.mp3`;
                 a.load();
             });
         }
@@ -1583,7 +1583,7 @@ button{font-family:inherit;cursor:pointer;}
             if (mp3Ready[idx]) {
                 // 🎵 mp3 음원: 중간에 끊지 않고 끝까지 재생 (반복·자동정지 타이머 없음)
                 try {
-                    currentAudio = new Audio(`alarm${idx}.mp3`);
+                    currentAudio = new Audio(`sound/alarm${idx}.mp3`);
                     currentAudio.loop = false;
                     currentAudio.volume = vol;
                     currentAudio.addEventListener('ended', () => {
@@ -2656,7 +2656,7 @@ button{font-family:inherit;cursor:pointer;}
       </div>
 
       <div class="field sound-section">
-        <label>🔊 발표자 선정 완료 사운드 <small>(같은 폴더의 success.mp3를 자동으로 재생 · 없으면 기본 팡파르)</small></label>
+        <label>🔊 발표자 선정 완료 사운드 <small>(sound 폴더의 success.mp3를 자동으로 재생 · 없으면 기본 팡파르)</small></label>
         <div class="sound-row sound-row-single">
           <div class="sound-item">
             <div class="sound-item-top">
@@ -2730,9 +2730,9 @@ const store = {
 };
 
 /* ================= 사운드 (발표자 선정 완료 시에만 재생) =================
-   같은 폴더에 있는 success.mp3 파일을 자동으로 불러와 재생한다.
+   sound 폴더에 있는 success.mp3 파일을 자동으로 불러와 재생한다.
    파일이 없거나 로드에 실패하면 Web Audio로 합성한 기본 팡파르로 자동 대체된다. */
-const FANFARE_FILE = 'success.mp3';
+const FANFARE_FILE = 'sound/success.mp3';
 let fanfareAvailable = true;
 const fanfareAudioEl = new Audio(FANFARE_FILE);
 fanfareAudioEl.preload = 'auto';
@@ -4139,12 +4139,12 @@ body.phase-moving #speech{opacity:1;}
     </div>
     <div class="setCard">
       <div class="lbl">🔔 이동 카운트다운 소리</div>
-      <div class="hint" style="margin-top:2px;">이동 시간이 시작되면 10초 카운트다운 소리가 재생됩니다.<br>이 파일과 같은 폴더에 <b>behappy.mp3</b>가 있으면 그 파일이,<br>없으면 기본 카운트다운 소리가 자동 재생됩니다.</div>
+      <div class="hint" style="margin-top:2px;">이동 시간이 시작되면 10초 카운트다운 소리가 재생됩니다.<br>이 파일 옆 <b>sound</b> 폴더에 <b>behappy.mp3</b>가 있으면 그 파일이,<br>없으면 기본 카운트다운 소리가 자동 재생됩니다.</div>
       <div class="hint" id="countStatus" style="color:#C84C0C;"></div>
     </div>
     <div class="setCard">
       <div class="lbl">🏆 전체 완료 종료 사운드</div>
-      <div class="hint" style="margin-top:2px;">모든 활동이 끝나면 종료 사운드가 재생됩니다.<br>이 파일과 같은 폴더에 <b>goodmorning-10s.mp3</b>가 있으면 그 파일이,<br>없으면 기본 완료 사운드가 자동 재생됩니다.</div>
+      <div class="hint" style="margin-top:2px;">모든 활동이 끝나면 종료 사운드가 재생됩니다.<br>이 파일 옆 <b>sound</b> 폴더에 <b>goodmorning-10s.mp3</b>가 있으면 그 파일이,<br>없으면 기본 완료 사운드가 자동 재생됩니다.</div>
       <div class="hint" id="endStatus" style="color:#C84C0C;"></div>
       <div class="stepRow" style="margin-top:6px;">
         <button class="stepBtn" id="endVolDown">−</button>
@@ -4325,9 +4325,9 @@ const sClick=()=>tone(660,0,0.05,'square',0.06);
 
 // ================== 이동 카운트다운 소리 ==================
 // 이동 시간이 시작되면 10초 카운트다운 소리가 재생됩니다.
-// 같은 폴더에 behappy.mp3가 있으면 그 파일이, 없으면 기본(합성) 카운트다운 소리가 재생됩니다.
+// sound 폴더에 behappy.mp3가 있으면 그 파일이, 없으면 기본(합성) 카운트다운 소리가 재생됩니다.
 let countFileOk=null;
-const countTrack=new Audio('behappy.mp3');
+const countTrack=new Audio('sound/behappy.mp3');
 countTrack.preload='auto';
 countTrack.addEventListener('canplay',()=>{ if(countFileOk===null){ countFileOk=true; renderCountStatus(); } });
 countTrack.addEventListener('error',()=>{ countFileOk=false; renderCountStatus(); });
@@ -4381,9 +4381,9 @@ function stopCountdownSound(){
 
 // ================== 전체 완료 종료 사운드 ==================
 // 모든 활동이 끝나면(finish) 종료 사운드가 재생됩니다.
-// 같은 폴더에 goodmorning-10s.mp3가 있으면 그 파일이, 없으면 기본(합성) 완료 사운드(sVictory)가 재생됩니다.
+// sound 폴더에 goodmorning-10s.mp3가 있으면 그 파일이, 없으면 기본(합성) 완료 사운드(sVictory)가 재생됩니다.
 let endFileOk=null, endVol=1;
-const endTrack=new Audio('goodmorning-10s.mp3');
+const endTrack=new Audio('sound/goodmorning-10s.mp3');
 endTrack.preload='auto';
 endTrack.addEventListener('canplay',()=>{ if(endFileOk===null){ endFileOk=true; renderEndStatus(); } });
 endTrack.addEventListener('error',()=>{ endFileOk=false; renderEndStatus(); });
@@ -5061,7 +5061,7 @@ renderCfg(); renderDef(); renderCountStatus(); renderEndStatus(); resetAll();
         <option value="always">타이머가 끝날 때마다 (권장)</option>
         <option value="deadline">[마감]으로 맞춘 타이머가 끝났을 때만</option>
       </select>
-      <div class="hint">[마감] 타이머가 끝나면 timemusic.mp3, 그 밖의 타이머가 끝나면 success-main.mp3 를 재생합니다. 두 파일을 이 파일과 같은 폴더에 두세요. 없으면 기본 알림음이 울립니다.</div>
+      <div class="hint">[마감] 타이머가 끝나면 timemusic.mp3, 그 밖의 타이머가 끝나면 success-main.mp3 를 재생합니다. 두 파일을 이 파일 옆 sound 폴더에 두세요. 없으면 기본 알림음이 울립니다.</div>
     </div>
 
     <div class="field">
@@ -5223,8 +5223,8 @@ renderCfg(); renderDef(); renderCountStatus(); renderEndStatus(); resetAll();
       holdZero=false; holdTimer=null; byDeadline=false;
       panel.classList.remove("done"); paintTimer();
     }, 5000);
-    if(byDeadline) playAlarm("timemusic.mp3");
-    else if(cfg.alarmMode !== "deadline") playAlarm("success-main.mp3");
+    if(byDeadline) playAlarm("sound/timemusic.mp3");
+    else if(cfg.alarmMode !== "deadline") playAlarm("sound/success-main.mp3");
     paintTimer();
   }
   function stopTimer(){
@@ -5312,7 +5312,7 @@ renderCfg(); renderDef(); renderCountStatus(); renderEndStatus(); resetAll();
   function playAlarm(file){
     stopAlarm();
     try{
-      audioEl = new Audio(file || "success-main.mp3");
+      audioEl = new Audio(file || "sound/success-main.mp3");
       audioEl.loop = false;
       audioEl.onerror = function(){ beep(); };
       var p = audioEl.play();
@@ -5621,7 +5621,7 @@ renderCfg(); renderDef(); renderCountStatus(); renderEndStatus(); resetAll();
   var mp3=null, mp3ok=false, actx=null;
   function initSound(){
     try{
-      mp3=new Audio('success-main.mp3');
+      mp3=new Audio('sound/success-main.mp3');
       mp3.preload='auto';
       mp3.addEventListener('canplaythrough', function(){ mp3ok=true; paintSnd(); });
       mp3.addEventListener('error', function(){ mp3ok=false; paintSnd(); });
@@ -5697,7 +5697,7 @@ renderCfg(); renderDef(); renderCountStatus(); renderEndStatus(); resetAll();
   /* 준비된 음원이 실패하면 새로 한 번 더 시도한 뒤 기본 종료음 */
   function playEndFallback(){
     try{
-      var a=new Audio('success-main.mp3');
+      var a=new Audio('sound/success-main.mp3');
       a.volume=cfg.vol/100;
       var q=a.play();
       if(q&&q.catch){ q.catch(function(){ beep(); }); }
