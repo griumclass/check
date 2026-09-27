@@ -5289,9 +5289,9 @@ renderCfg(); renderDef(); renderCountStatus(); renderEndStatus(); resetAll();
     gap:12px;flex:0 0 auto;align-items:stretch;}
 
   /* --- 시계 명판 (새로 정의) --- */
-  #clockPlate{padding:8px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
-  #clockDate{font-size:clamp(13px,1.3vw,20px);color:var(--ink-soft);letter-spacing:1px;}
-  #clockTime{font-size:clamp(24px,2.9vw,42px);line-height:1.1;color:#4A3418;letter-spacing:1px;
+  #clockPlate{padding:4px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;}
+  #clockDate{font-size:clamp(16px,2.2vw,28px);color:var(--ink-soft);letter-spacing:1px;}
+  #clockTime{font-size:clamp(40px,6.8vw,92px);line-height:1.05;color:#4A3418;letter-spacing:1px;
     font-variant-numeric:tabular-nums;text-shadow:0 2px 0 rgba(255,255,255,.8);}
   #clockTime .ap{font-size:.5em;color:var(--brass3);margin-right:.3em;letter-spacing:0;}
 
@@ -5553,9 +5553,6 @@ body{background:linear-gradient(180deg,#9DBBE6 0%,#BFD0EE 38%,#E4E2EE 70%,#F6E7D
 .stage:empty::after{content:"✦ 모두 도착! ✦" !important;color:#C9922E !important;}
 .big{background:linear-gradient(180deg,#34407A,#1E2750 70%,#161D40) !important;color:#FFF8EA !important;
   border-color:#F2C14E !important;box-shadow:0 4px 0 #0F1430,0 6px 12px rgba(20,27,58,.35) !important;text-shadow:none !important;}
-.big::before{content:'★ ';color:#F2C14E;}
-.chip::before{content:'☆ ';color:#C9922E;}
-.chip.on::before{content:'★ ';color:#FFF8EA;}
 .toolbar{position:relative;}
 .lp-deco{flex:1 1 auto;align-self:stretch;min-width:0;position:relative;pointer-events:none;overflow:visible;}
 .lp-deco .lp-planet{position:absolute;left:4px;bottom:-6px;width:min(100%,130px);height:auto;overflow:visible;}
